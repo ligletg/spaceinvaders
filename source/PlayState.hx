@@ -19,6 +19,8 @@ class PlayState extends FlxState
 		// _background = new FlxBackdrop();
 		_player = new Player(20, 20);
 		add(_player);
+		FlxG.watch.add(_player, "x");
+		FlxG.watch.add(_player, "y");
 		super.create();
 	}
 
