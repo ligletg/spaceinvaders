@@ -17,7 +17,20 @@ class Player extends FlxSprite
 	public function new(?X:Float=0, ?Y:Float=0) 
 	{
 		super(X, Y);
-		makeGraphic(16, 16, FlxColor.BLUE);
+		scrollFactor.x = 0;
+		scrollFactor.y = 0;
+		//makeGraphic(64, 64, FlxColor.BLUE);
+		loadGraphic(AssetPaths.ship_small_blue_sprite__png, true, 128, 128);
+		animation.add("stdby", [0, 1, 2, 3], 15, true);
+		animation.add("forward", [4, 5], 15, true);
+		animation.add("backward", [6, 7], 15, true);
+		animation.add("right", [1], 15, true);
+		animation.add("left", [3], 15, true);
+		animation.add("forward_right", [1], 15, true);
+		animation.add("forward_left", [3], 15, true);
+		animation.add("backward_right", [2], 15, true);
+		animation.add("backward_left", [0], 15, true);
+		animation.play("stdby");
 		drag.x = drag.y = 1600;
 	}
 	
@@ -71,6 +84,32 @@ class Player extends FlxSprite
 			
 			velocity.set(speed, 0);
 			velocity.rotate(FlxPoint.weak(0, 0), mA);
+			animation.stop();
+			if (mA == -90)
+				animation.play("forward");
+			else if (mA > -90 && mA < 0)
+				animation.play("forward_right");
+			else if (mA == 0)
+				animation.play("right");
+			else if (mA > 0 && mA < 90)
+				animation.play("backward_right");
+			else if (mA == 90)
+				animation.play("backward");
+			else if (mA > 90 && mA < 180)
+				animation.play("backward_left")
+			else if (mA == 180)
+				animation.play("left");
+			else if (mA > -180 && mA < -90)
+				animation.play("forward_left");
+			trace(mA);
+		}
+		else
+		{
+			if (animation.name != "stdby")
+			{
+				animation.stop();
+				animation.play("stdby");
+			}
 		}
 	}
 	
