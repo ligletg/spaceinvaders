@@ -36,7 +36,7 @@
         <key>dataFormat</key>
         <string>spritesheet-only</string>
         <key>textureFileName</key>
-        <filename></filename>
+        <filename>ship_small_blue_sprite.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -76,7 +76,7 @@
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
-        <uint>1</uint>
+        <uint>0</uint>
         <key>webpQualityLevel</key>
         <uint>101</uint>
         <key>textureSubPath</key>
@@ -104,7 +104,7 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
@@ -179,7 +179,7 @@
             <key>trimMargin</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">Trim</enum>
+            <enum type="SpriteSettings::TrimMode">None</enum>
             <key>tracerTolerance</key>
             <int>200</int>
             <key>heuristicMask</key>
@@ -195,6 +195,10 @@
             <key type="filename">ship_small_blue2.png</key>
             <key type="filename">ship_small_blue3.png</key>
             <key type="filename">ship_small_blue4.png</key>
+            <key type="filename">ship_small_blue_fspeed1.png</key>
+            <key type="filename">ship_small_blue_fspeed2.png</key>
+            <key type="filename">ship_small_blue_lspeed1.png</key>
+            <key type="filename">ship_small_blue_lspeed2.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -214,6 +218,10 @@
             <filename>ship_small_blue2.png</filename>
             <filename>ship_small_blue3.png</filename>
             <filename>ship_small_blue4.png</filename>
+            <filename>ship_small_blue_fspeed1.png</filename>
+            <filename>ship_small_blue_fspeed2.png</filename>
+            <filename>ship_small_blue_lspeed1.png</filename>
+            <filename>ship_small_blue_lspeed2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

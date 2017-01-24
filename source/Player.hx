@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
 
 /**
  * ...
@@ -13,6 +14,8 @@ import flixel.util.FlxColor;
 class Player extends FlxSprite 
 {
 	public var speed:Float = 200;
+	public var _weaponCoolDown:Float = 1000;
+	public var _weaponOverHeat:Bool = false;
 	 
 	public function new(?X:Float=0, ?Y:Float=0) 
 	{
@@ -101,7 +104,6 @@ class Player extends FlxSprite
 				animation.play("left");
 			else if (mA > -180 && mA < -90)
 				animation.play("forward_left");
-			trace(mA);
 		}
 		else
 		{
@@ -113,9 +115,30 @@ class Player extends FlxSprite
 		}
 	}
 	
+	private function shoot():Void
+	{
+		if (_weaponOverHeat == false)
+		{
+			_weaponOverHeat = true;
+			var bullet = new Projectile(x, y);
+			FlxG.state.add(bullet);
+			new FlxTimer().start(_weaponCoolDown / 1000, resetWeaponCoolDown);
+		}
+	}
+	
+	private function resetWeaponCoolDown(Timer:FlxTimer):Void
+	{
+		trace("resetWeaponCoolDown");
+		_weaponOverHeat = false;
+	}
+	
 	override public function update(elapsed:Float):Void
 	{
 		movement();
+		if (FlxG.keys.anyPressed([SPACE]))
+		{
+			shoot();
+		}
 		super.update(elapsed);
 	}
 }
