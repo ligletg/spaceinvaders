@@ -11,11 +11,13 @@ import flixel.util.FlxTimer;
  * ...
  * @author ...
  */
-class Player extends FlxSprite 
+class Player extends FlxSprite
 {
 	public var speed:Float = 200;
-	public var _weaponCoolDown:Float = 1000;
+	public var _weaponCoolDown:Float = 100;
 	public var _weaponOverHeat:Bool = false;
+	public var _projectileLauncher:Int = 0;
+	public var _projectileOffset:Array<FlxPoint> = new Array();
 	 
 	public function new(?X:Float=0, ?Y:Float=0) 
 	{
@@ -35,6 +37,8 @@ class Player extends FlxSprite
 		animation.add("backward_left", [0], 15, true);
 		animation.play("stdby");
 		drag.x = drag.y = 1600;
+		_projectileOffset.push(new FlxPoint(16, 40));
+		_projectileOffset.push(new FlxPoint(80, 40));
 	}
 	
 	private function movement():Void
@@ -119,8 +123,10 @@ class Player extends FlxSprite
 	{
 		if (_weaponOverHeat == false)
 		{
+			var projectileCoord = _projectileOffset[_projectileLauncher % _projectileOffset.length];
+			_projectileLauncher++;
 			_weaponOverHeat = true;
-			var bullet = new Projectile(x, y);
+			var bullet = new Projectile(projectileCoord.x + x, projectileCoord.y + y, velocity.y);
 			FlxG.state.add(bullet);
 			new FlxTimer().start(_weaponCoolDown / 1000, resetWeaponCoolDown);
 		}
