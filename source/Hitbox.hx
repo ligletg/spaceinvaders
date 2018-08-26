@@ -8,7 +8,7 @@ import flixel.util.FlxColor;
 
 /**
  * ...
- * @author ...
+ * @author Gregoire Liglet <gregoire.liglet@gmail.com>
  */
 using flixel.util.FlxSpriteUtil;
 class Hitbox extends FlxSprite 
